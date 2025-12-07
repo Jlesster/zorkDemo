@@ -10,6 +10,7 @@ public class App {
     Scanner scanner = new Scanner(System.in);
     World world = new World();
 
+    //gameplay loop flag
     boolean isPlaying = false;
 
     String pName = null;
@@ -18,7 +19,7 @@ public class App {
     double health = 0;
     double damage = 0;
 
-    int xp = 0;
+    int xpCap = 0;
 
     //loooots of world reprinting
     world.getWorldState(world.worldState);
@@ -42,19 +43,25 @@ public class App {
         if(choice.contains("1") || choice.toLowerCase().contains("ranger")) {
           pClass = "Ranger";
           damage = 15;
+          health = 20;
+          xpCap = 85;
         } else if(choice.contains("2") || choice.toLowerCase().contains("fighter")) {
           pClass = "Fighter";
           damage = 20;
+          health = 25;
+          xpCap = 110;
         } else if(choice.contains("3") || choice.toLowerCase().contains("mage")) {
           pClass = "Mage";
           damage = (int)((Math.random() * (20 - 5)) + 5);
+          health = 17;
+          xpCap = 70;
         }
       }
 
       //creating the player object using the constructor
       //rips the variables we decalred earlier and saves them to our player code
       //any code related to players should be kept in their class file
-      zorkPlayer zP = new zorkPlayer(pName, pClass, health, damage, xp);
+      zorkPlayer zP = new zorkPlayer(pName, pClass, health, damage, xpCap);
       world.zP = zP;
 
       //we set the playing flag to true to start our main gameplay loop
@@ -81,6 +88,10 @@ public class App {
             zP.listPlayerStats();
           }
           break;
+          case 3:
+          if(input.toLowerCase().contains("stats")) {
+            zP.listPlayerStats();
+          }
         }
       }
     }

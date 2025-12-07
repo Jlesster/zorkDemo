@@ -25,16 +25,16 @@ public class zorkPlayer {
   public zorkPlayer(String pName, String pClass, double health, double damage, int xp) {
     this.pName = pName;
     this.pClass = pClass;
-    this.health = maxHealth;
     //setting maxHealth to declared value when constructor is made
     //then setting health to that as we will be messing with that separately and it cannot exceed the max
     this.maxHealth = health;
+    this.health = this.maxHealth;
     this.damage = damage;
-    this.xp = xp;
+    this.xpToLevel = xp;
   }
   //didnt end up using this but if wanted you can just plug it into the gameplay loop
   public void listPlayerStats() {
-    System.out.println("\n==========[Player Stats]===========\nName: " + pName + "\nClass: " + pClass + "\nHealth: " + health + maxHealth + "\nXP: " + xp + xpToLevel + "\nLevel: " + level + "\n===================================");
+    System.out.println("\n==========[Player Stats]===========\nName: " + pName + "\nClass: " + pClass + "\nHealth: " + health + "/" + maxHealth + "\nXP: " + xp + "/" + xpToLevel + "\nLevel: " + level + "\n===================================");
   }
 
 }
