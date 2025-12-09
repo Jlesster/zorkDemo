@@ -6,16 +6,14 @@ public class App {
 
   public void runtime() {
     //declaring all our needed stuff for constructors and while loops
-    //xp is just there until i write combat
     Scanner scanner = new Scanner(System.in);
     World world = new World();
 
-    //gameplay loop flag
+    //gameplay and combat loop flags
     boolean isPlaying = false;
-
+    boolean inCombat = false;
     String pName = null;
     String pClass = null;
-
     double health = 0;
     double damage = 0;
 
@@ -78,6 +76,7 @@ public class App {
       while(isPlaying) {
         world.getWorldState(world.worldState);
         String input = scanner.nextLine();
+
         switch (world.worldState) {
           case 2:
           if(input.toLowerCase().contains("look")) {
@@ -92,6 +91,10 @@ public class App {
           if(input.toLowerCase().contains("stats")) {
             zP.listPlayerStats();
           }
+          break;
+          case 4:
+          inCombat = true;
+          break;
         }
       }
     }
