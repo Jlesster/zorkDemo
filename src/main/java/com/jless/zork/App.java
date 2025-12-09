@@ -17,7 +17,7 @@ public class App {
     double health = 0;
     double damage = 0;
 
-    int xpCap = 0;
+    int xpToLevel = 0;
 
     //loooots of world reprinting
     world.getWorldState(world.worldState);
@@ -42,24 +42,23 @@ public class App {
           pClass = "Ranger";
           damage = 15;
           health = 20;
-          xpCap = 85;
+          xpToLevel = 85;
         } else if(choice.contains("2") || choice.toLowerCase().contains("fighter")) {
           pClass = "Fighter";
           damage = 20;
           health = 25;
-          xpCap = 110;
+          xpToLevel = 110;
         } else if(choice.contains("3") || choice.toLowerCase().contains("mage")) {
           pClass = "Mage";
           damage = (int)((Math.random() * (20 - 5)) + 5);
           health = 17;
-          xpCap = 70;
+          xpToLevel = 70;
         }
       }
 
-      //creating the player object using the constructor
-      //rips the variables we decalred earlier and saves them to our player code
-      //any code related to players should be kept in their class file
-      zorkPlayer zP = new zorkPlayer(pName, pClass, health, damage, xpCap);
+      //creating the player and wolf object using the constructor
+      zorkPlayer zP = new zorkPlayer(pName, pClass, health, damage, xpToLevel);
+      zorkWolf zW = new zorkWolf((health / 2), (damage / 2));
       world.zP = zP;
 
       //we set the playing flag to true to start our main gameplay loop
@@ -93,12 +92,49 @@ public class App {
           }
           break;
           case 4:
-          inCombat = true;
+          if(input.toLowerCase().contains("run") || input.toLowerCase().contains("keep") || input.toLowerCase().contains("sprint")) {
+            world.worldState = 5;
+          }
           break;
+          case 5:
+          if(!inCombat) {
+            world.worldState = 6;
+            inCombat = true;
+          }
+        }
+
+        //our main combat loop
+        if(inCombat) {
+          if(zP.health > 0 && zW.wolfHealth > 0) {
+           String action = scanner.nextLine();
+           System.out.println("You face the wolf, sword and shield in hand.\nAttack : Defend");
+            if(action.toLowerCase().contains("attack")) {
+              zW.wolfHealth -= zP.damage;
+              zP.health -= zW.wolfDamage;
+              System.out.println("You hit for " + zP.damage + " damage.\nAnd were hit for " + zW.wolfDamage + " damage.");
+            } else if(action.toLowerCase().contains("defend")) {
+              zP.health -= (zW.wolfDamage / 2);
+            }
+          } else if(zP.health > 0 && zW.wolfHealth <= 0) {
+            System.out.println("You defeated the wolf, you gained " + zW.xpGiven + " xp!");
+            zP.xp += zW.xpGiven;
+            inCombat = false;
+          } else if(zP.health <= 0 && zW.wolfHealth > 0) {
+            System.out.println("You have died, please try again!");
+            inCombat = false;
+            isPlaying = false;
+          }
+        }
+
+        if(zP.xp >= zP.xpToLevel) {
+          zP.levelUp();
+          System.out.println("You have levelled up to LVL:" + zP.level + "!");
+          zP.listPlayerStats();
         }
       }
     }
   }
+
 
   //our main arg
   //i like to make separate methods for each of my functions
@@ -114,12 +150,12 @@ class World {
 
   //here is where we will keep track of the game state for the switch statement
   //we can easliy reference this and securely change it
-  //that includes increasing and decreasing it to go back and forward as if you were to change location
   int worldState = 0;
 
   //we declare zorkPlayer here but dont assign the constructor to keep it unowned by this class
   //we will come back to this later, giving it an object
   zorkPlayer zP;
+  App app = new App();
 
   //this is what we will use to print the world state,
   //its saved in its own int so we can reference it whenever without issues
@@ -142,14 +178,8 @@ class World {
     "hearing the shout of guards with the muffled laughs of the damned prisoners beind you.\n" +
     "You waste no time tring to get as much distance between you and the soldiers,\n" +
     "praying to the gods you stumble across a band of Stormcloaks\n" +
-    "This is the end of the playable demo";
+    "Keep Running : Keep Sprinting?";
 
-    String combat1 =
-    "While running through the thick pine forest, you manage to slip free of the ropes binding your hands.\n" +
-    "On your dash to freedom you discover a path of broken branches and sticks leading to a " + zP.pClass + ",\n" +
-    "judging by the damp smell and wounds all over his body, there is a beast nearby.\n" +
-    "Without hesitating you liberate the sword and shield from the poor man just as a dire wolf emerges from the bush.\n" +
-    "\nCombat Initiated:\n";
 
     //where we control the world state and print out the cases
     switch(worldState) {
@@ -163,7 +193,15 @@ class World {
 
       case 4 -> System.out.println(worldState3);
 
-      case 5 -> System.out.println(combat1);
+      case 5 -> { String combat1 =
+        "While running through the thick pine forest, you manage to slip free of the ropes binding your hands.\n" +
+        "On your dash to freedom you discover a path of broken branches and sticks leading to a " + zP.pClass + ",\n" +
+        "judging by the damp smell and wounds all over his body, there is a beast nearby.\n" +
+        "Without hesitating you liberate the sword and shield from the poor man just as a dire wolf emerges from the bush.\n" +
+        "\nCombat Initiated:\n";
+
+        System.out.println(combat1);
+      }
     }
   }
 }

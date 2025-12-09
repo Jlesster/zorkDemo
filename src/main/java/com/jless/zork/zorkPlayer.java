@@ -12,7 +12,7 @@ public class zorkPlayer {
   double xp;
   double xpOverflow;
   double xpToLevel;
-  int level;
+  int level = 1;
 
   //levelling func what we plug into a check for xp >= xpToLevel in runtime
   public void levelUp() {
@@ -25,10 +25,12 @@ public class zorkPlayer {
     if(xp > xpToLevel) {
       xpOverflow = xp - xpToLevel;
       xpToLevel = xpToLevel + (xpToLevel * 1.2);
+      level++;
       xp = xpOverflow;
     } else {
       xpToLevel = xpToLevel + (xpToLevel * 1.2);
       xp = 0;
+      level++;
     }
   }
 
@@ -61,10 +63,11 @@ public class zorkPlayer {
 }
 class zorkWolf {
   double wolfHealth;
-  int wolfDamage;
+  double wolfDamage;
   int xpGiven = 150;
 
-  public zorkWolf(double health, int damage) {
-
+  public zorkWolf(double health, double damage) {
+    this.wolfHealth = health;
+    this.wolfDamage = damage;
   }
 }
