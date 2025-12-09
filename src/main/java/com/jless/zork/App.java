@@ -121,16 +121,36 @@ class World {
   //this is what we will use to print the world state,
   //its saved in its own int so we can reference it whenever without issues
   public void getWorldState(int worldState) {
+    String worldState1 =
+    "You awaken on a ragged cart bouncing around the old road, passing through a cold damp snow-touched forest." +
+    "What will you do? \n Look around : Jump off";
+
+    String worldState2 =
+    "You look around, catching the eye of a man adorned in battle scarred blue furs." +
+    "Before you can let out a word another prisoner sitting across from you pipes up." +
+    "Prisoner:'Watch yourself that is Ulfric Stormcloak'" +
+    "The cart continues to roll and bounce across the cobble road," +
+    "a quick look ahead shows a broad stone wall accompanied by a massive wooden door tacked together with broad iron nails and large pine 'planks' which are really dissected trees" +
+    "This is the end of the playable demo";
+
+    String worldState3 =
+    "You jump off the cart breaking into a sprint as soon as your feet hit the ground," +
+    "hearing the shout of guards with the muffled laughs of the damned prisoners beind you." +
+    "You waste no time tring to get as much distance between you and the soldiers," +
+    "praying to the gods you stumble across a band of Stormcloaks" +
+    "This is the end of the playable demo";
+
+
     switch(worldState) {
       case 0 -> System.out.println("You can look at character stats by typing Stats into the console. \nPlease enter character name: ");
 
       case 1 -> System.out.println("Please pick a class  : \n1.Ranger \n2.Fighter \n3.Mage");
 
-      case 2 -> System.out.println("You awaken on a ragged cart bouncing around the old road, passing through a cold damp snow-touched forest. \nWhat will you do? \n Look around : Jump off");
+      case 2 -> System.out.println(worldState1);
 
-      case 3 -> System.out.println("You look around, catching the eye of a man adorned in battle scarred blue furs. \nBefore you can let out a word another prisoner sitting across from you pipes up. \nPrisoner:'Watch yourself that is Ulfric Stormcloak' \nThe cart continues to roll and bounce across the cobble road, a quick look ahead shows a broad stone wall accompanied by a massive wooden door tacked together with broad iron nails and large pine 'planks' which are really dissected trees \n\n This is the end of the playable demo");
+      case 3 -> System.out.println(worldState2);
 
-      case 4 -> System.out.println("You jump off the cart breaking into a sprint as soon as your feet hit the ground, \nhearing the shout of guards with the muffled laughs of the damned prisoners beind you. \nYou waste no time tring to get as much distance between you and the soldiers, praying to the gods you stumble across a band of Stormcloaks \n\n This is the end of the playable demo");
+      case 4 -> System.out.println(worldState3);
     }
   }
 }
