@@ -34,7 +34,16 @@ public class zorkPlayer {
   }
   //didnt end up using this but if wanted you can just plug it into the gameplay loop
   public void listPlayerStats() {
-    System.out.println("\n==========[Player Stats]===========\nName: " + pName + "\nClass: " + pClass + "\nHealth: " + health + "/" + maxHealth + "\nXP: " + xp + "/" + xpToLevel + "\nLevel: " + level + "\n===================================");
+    String playerStats =
+    "\n==========[Player Stats]===========\n" +
+    "\nName: " + pName +
+    "\nClass: " + pClass +
+    "\nHealth: " + health + "/" + maxHealth +
+    "\nXP: " + xp + "/" + xpToLevel +
+    "\nLevel: " + level +
+    "\n===================================\n";
+
+    System.out.println(playerStats);
   }
 
 }

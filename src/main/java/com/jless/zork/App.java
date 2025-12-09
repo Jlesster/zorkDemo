@@ -122,25 +122,25 @@ class World {
   //its saved in its own int so we can reference it whenever without issues
   public void getWorldState(int worldState) {
     String worldState1 =
-    "You awaken on a ragged cart bouncing around the old road, passing through a cold damp snow-touched forest." +
+    "You awaken on a ragged cart bouncing around the old road, passing through a cold damp snow-touched forest.\n" +
     "What will you do? \n Look around : Jump off";
 
     String worldState2 =
-    "You look around, catching the eye of a man adorned in battle scarred blue furs." +
-    "Before you can let out a word another prisoner sitting across from you pipes up." +
-    "Prisoner:'Watch yourself that is Ulfric Stormcloak'" +
-    "The cart continues to roll and bounce across the cobble road," +
-    "a quick look ahead shows a broad stone wall accompanied by a massive wooden door tacked together with broad iron nails and large pine 'planks' which are really dissected trees" +
+    "You look around, catching the eye of a man adorned in battle scarred blue furs.\n" +
+    "Before you can let out a word another prisoner sitting across from you pipes up.\n" +
+    "Prisoner:'Watch yourself that is Ulfric Stormcloak'\n" +
+    "The cart continues to roll and bounce across the cobble road,\n" +
+    "a quick look ahead shows a broad stone wall accompanied by a massive wooden door tacked together with broad iron nails and large pine 'planks' which are really dissected trees\n" +
     "This is the end of the playable demo";
 
     String worldState3 =
-    "You jump off the cart breaking into a sprint as soon as your feet hit the ground," +
-    "hearing the shout of guards with the muffled laughs of the damned prisoners beind you." +
-    "You waste no time tring to get as much distance between you and the soldiers," +
-    "praying to the gods you stumble across a band of Stormcloaks" +
+    "You jump off the cart breaking into a sprint as soon as your feet hit the ground,\n" +
+    "hearing the shout of guards with the muffled laughs of the damned prisoners beind you.\n" +
+    "You waste no time tring to get as much distance between you and the soldiers,\n" +
+    "praying to the gods you stumble across a band of Stormcloaks\n" +
     "This is the end of the playable demo";
 
-
+    //where we control the world state and print out the character inputs
     switch(worldState) {
       case 0 -> System.out.println("You can look at character stats by typing Stats into the console. \nPlease enter character name: ");
 
