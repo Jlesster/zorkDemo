@@ -121,9 +121,10 @@ class World {
   //this is what we will use to print the world state,
   //its saved in its own int so we can reference it whenever without issues
   public void getWorldState(int worldState) {
+    //hard coding in world states, you can make this more modular by combining strings if certain bools are declared
     String worldState1 =
     "You awaken on a ragged cart bouncing around the old road, passing through a cold damp snow-touched forest.\n" +
-    "What will you do? \n Look around : Jump off";
+    "What will you do? \n\nLook around : Jump off";
 
     String worldState2 =
     "You look around, catching the eye of a man adorned in battle scarred blue furs.\n" +
@@ -140,7 +141,14 @@ class World {
     "praying to the gods you stumble across a band of Stormcloaks\n" +
     "This is the end of the playable demo";
 
-    //where we control the world state and print out the character inputs
+    String combat1 =
+    "While running through the thick pine forest, you manage to slip free of the ropes binding your hands.\n" +
+    "On your dash to freedom you discover a path of broken branches and sticks leading to a " + zP.pClass + ",\n" +
+    "judging by the damp smell and wounds all over his body, there is a beast nearby.\n" +
+    "Without hesitating you liberate the sword and shield from the poor man just as a dire wolf emerges from the bush.\n" +
+    "\nCombat Initiated:\n";
+
+    //where we control the world state and print out the cases
     switch(worldState) {
       case 0 -> System.out.println("You can look at character stats by typing Stats into the console. \nPlease enter character name: ");
 
@@ -151,6 +159,8 @@ class World {
       case 3 -> System.out.println(worldState2);
 
       case 4 -> System.out.println(worldState3);
+
+      case 5 -> System.out.println(combat1);
     }
   }
 }

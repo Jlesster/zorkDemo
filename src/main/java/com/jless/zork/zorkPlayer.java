@@ -32,16 +32,16 @@ public class zorkPlayer {
     this.damage = damage;
     this.xpToLevel = xp;
   }
-  //didnt end up using this but if wanted you can just plug it into the gameplay loop
+  //ended up using this after all to call a stat print
   public void listPlayerStats() {
     String playerStats =
-    "\n==========[Player Stats]===========\n" +
-    "\nName: " + pName +
-    "\nClass: " + pClass +
-    "\nHealth: " + health + "/" + maxHealth +
-    "\nXP: " + xp + "/" + xpToLevel +
-    "\nLevel: " + level +
-    "\n===================================\n";
+    "\n=======[Player Stats]========" +
+    "\nName:    " + pName +
+    "\nClass:   " + pClass +
+    "\nHealth:  " + health + "/" + maxHealth +
+    "\nLevel:   " + level +
+    "\nXP:      " + xp + "/" + xpToLevel +
+    "\n=============================\n";
 
     System.out.println(playerStats);
   }
